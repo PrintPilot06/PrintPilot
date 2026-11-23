@@ -1,0 +1,119 @@
+{
+  "name": "FilamentProfile",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "material": {
+      "type": "string",
+      "enum": [
+        "PLA",
+        "PLA+",
+        "PETG",
+        "ABS",
+        "ASA",
+        "TPU",
+        "Nylon",
+        "Polycarbonate",
+        "Custom"
+      ],
+      "enumColors": [
+        "blue",
+        "blue",
+        "green",
+        "orange",
+        "orange",
+        "purple",
+        "pink",
+        "gray",
+        "gray"
+      ]
+    },
+    "diameter": {
+      "type": "number",
+      "default": 1.75
+    },
+    "density": {
+      "type": "number",
+      "default": 1.24
+    },
+    "nozzle_temp": {
+      "type": "number",
+      "default": 210
+    },
+    "first_layer_nozzle_temp": {
+      "type": "number",
+      "default": 215
+    },
+    "bed_temp": {
+      "type": "number",
+      "default": 60
+    },
+    "first_layer_bed_temp": {
+      "type": "number",
+      "default": 65
+    },
+    "max_volumetric_speed": {
+      "type": "number",
+      "default": 12
+    },
+    "flow_ratio": {
+      "type": "number",
+      "default": 1
+    },
+    "retraction_length": {
+      "type": "number",
+      "default": 0.8
+    },
+    "retraction_speed": {
+      "type": "number",
+      "default": 35
+    },
+    "fan_speed": {
+      "type": "number",
+      "default": 100
+    },
+    "notes": {
+      "type": "string"
+    },
+    "is_builtin": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "name",
+    "material"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

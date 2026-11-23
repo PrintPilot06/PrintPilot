@@ -1,0 +1,114 @@
+{
+  "name": "PrinterProfile",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "build_x": {
+      "type": "number",
+      "default": 220
+    },
+    "build_y": {
+      "type": "number",
+      "default": 220
+    },
+    "build_z": {
+      "type": "number",
+      "default": 250
+    },
+    "nozzle_diameter": {
+      "type": "number",
+      "default": 0.4
+    },
+    "filament_diameter": {
+      "type": "number",
+      "default": 1.75
+    },
+    "max_nozzle_temp": {
+      "type": "number",
+      "default": 300
+    },
+    "max_bed_temp": {
+      "type": "number",
+      "default": 110
+    },
+    "max_speed": {
+      "type": "number",
+      "default": 300
+    },
+    "max_acceleration": {
+      "type": "number",
+      "default": 5000
+    },
+    "firmware": {
+      "type": "string",
+      "enum": [
+        "Marlin",
+        "Klipper",
+        "Prusa",
+        "Bambu",
+        "RepRapFirmware"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "green",
+        "yellow",
+        "gray"
+      ]
+    },
+    "start_gcode": {
+      "type": "string"
+    },
+    "end_gcode": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "is_builtin": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "name",
+    "build_x",
+    "build_y",
+    "build_z"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "AIConfig",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string",
+      "enum": [
+        "openai",
+        "anthropic",
+        "gemini",
+        "openai_compatible",
+        "local"
+      ],
+      "enumColors": [
+        "green",
+        "orange",
+        "blue",
+        "purple",
+        "gray"
+      ]
+    },
+    "model": {
+      "type": "string"
+    },
+    "base_url": {
+      "type": "string"
+    },
+    "api_key": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false
+    },
+    "auto_execute": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "provider",
+    "model"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
